@@ -33,7 +33,22 @@ class _ActivityListScreenState extends State<ActivityListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final List<Widget> tiles = [];
+    for (final activity in activities) {
+      tiles.add(
+        ActivityTile(
+          activity: activity,
+          isJoined: joined.contains(activity.name),
+          onOpen: () {
+            openDetails(activity);
+          },
+        ),
+      );
+    }
+    return Scaffold(
+      appBar: AppBar(title: const Text("izvannastavne aktivnosti")),
+      body: ListView(padding: const EdgeInsets.all(8), children: tiles),
+    );
   }
 }
 
@@ -62,7 +77,7 @@ class ActivityTile extends StatelessWidget {
         children: [
           Icon(
             activity.icon,
-            size: 31,
+            size: 32,
             color: isJoined ? Colors.green : Colors.grey,
           ),
           const SizedBox(width: 12),
@@ -83,9 +98,7 @@ class ActivityTile extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(
-            onPressed: onOpen
-          , icon: const Icon(Icons.chevron_right))
+          IconButton(onPressed: onOpen, icon: const Icon(Icons.chevron_right)),
         ],
       ),
     );
