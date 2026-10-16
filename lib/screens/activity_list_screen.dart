@@ -62,7 +62,7 @@ class ActivityTile extends StatelessWidget {
         children: [
           Icon(
             activity.icon,
-            size: 32,
+            size: 31,
             color: isJoined ? Colors.green : Colors.grey,
           ),
           const SizedBox(width: 12),
